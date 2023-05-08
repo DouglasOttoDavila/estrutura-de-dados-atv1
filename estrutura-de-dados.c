@@ -3,6 +3,78 @@
 #include <conio.h>
 #include<stdbool.h>
 
+// PROTÓTIPOS DAS FUNÇÕES
+void limpaTela();
+void aguardaCmd();
+void limpaArray(int *tamanhoArray, int *array);
+void inserir(int *tamanhoArray, int *array, int *contadorArray);
+void deletar(int *tamanhoArray, int *array, int *contadorArray);
+void debug (int *tamanhoArray, int *array, int *contadorArray);
+void exibir(int *array, int *contadorArray);
+void buscar(int *array, int *contadorArray);
+
+
+void main()
+{
+  int tamanhoArray = 0;  // inicializa o contador em zero (0)
+  int contadorArray = 0; // inicializa o contador em zero (0)
+  int opcaoMenu;
+  int valor;
+
+  // recebe input do usuário para determinar o tamanho do array
+  printf("\nInsira o tamanho desejado do Array: \n");
+  scanf("\n %d", &tamanhoArray);
+  int array[tamanhoArray];
+
+  limpaArray(&tamanhoArray, array);
+
+  while (opcaoMenu >= 0)
+  {
+    limpaTela();
+    printf("\nDigite a opção desejada:");
+    printf("\n1 - Inserir\n2 - Deletar\n3 - Buscar\n4 - Exibir\n5 - Debug Menu\n");
+    scanf(" %d", &opcaoMenu);
+
+    switch (opcaoMenu)
+    {
+
+    case 1:
+      limpaTela();
+      inserir(&tamanhoArray, array, &contadorArray);
+      break;
+
+    case 2:
+      limpaTela();
+      deletar(&tamanhoArray, array, &contadorArray);
+      aguardaCmd();
+      break;
+
+    case 3:
+      limpaTela();
+      buscar(array, &contadorArray);
+      aguardaCmd();
+      break;
+
+    case 4:
+      limpaTela();
+      exibir(array, &contadorArray);
+      aguardaCmd();
+      break;
+
+    case 5:
+      limpaTela();
+      debug(&tamanhoArray, array, &contadorArray);
+      aguardaCmd();
+      break;
+
+    default:
+      printf("Opção inexistente. Tente novamente.");
+      opcaoMenu = 0;
+      break;
+    }
+  }
+}
+
 // Funções
 void limpaTela()
 {
@@ -130,65 +202,4 @@ void buscar(int *array, int *contadorArray) {
     if (valorEncontrado == false) {
       printf("\nO valor %d não foi encontrado no array.", valor);
     }
-}
-
-void main()
-{
-  int tamanhoArray = 0;  // inicializa o contador em zero (0)
-  int contadorArray = 0; // inicializa o contador em zero (0)
-  int opcaoMenu;
-  int valor;
-
-  // recebe input do usuário para determinar o tamanho do array
-  printf("\nInsira o tamanho desejado do Array: \n");
-  scanf("\n %d", &tamanhoArray);
-  int array[tamanhoArray];
-
-  limpaArray(&tamanhoArray, array);
-
-  while (opcaoMenu >= 0)
-  {
-    limpaTela();
-    printf("\nDigite a opção desejada:");
-    printf("\n1 - Inserir\n2 - Deletar\n3 - Buscar\n4 - Exibir\n5 - Debug Menu\n");
-    scanf(" %d", &opcaoMenu);
-
-    switch (opcaoMenu)
-    {
-
-    case 1:
-      limpaTela();
-      inserir(&tamanhoArray, array, &contadorArray);
-      break;
-
-    case 2:
-      limpaTela();
-      deletar(&tamanhoArray, array, &contadorArray);
-      aguardaCmd();
-      break;
-
-    case 3:
-      limpaTela();
-      buscar(array, &contadorArray);
-      aguardaCmd();
-      break;
-
-    case 4:
-      limpaTela();
-      exibir(array, &contadorArray);
-      aguardaCmd();
-      break;
-
-    case 5:
-      limpaTela();
-      debug(&tamanhoArray, array, &contadorArray);
-      aguardaCmd();
-      break;
-
-    default:
-      printf("Opção inexistente. Tente novamente.");
-      opcaoMenu = 0;
-      break;
-    }
-  }
 }
